@@ -12,10 +12,7 @@ def predict(customer_data: dict, model_name="rf"):
 
     processed = preprocessor.transform(df)
 
-    if model_name == "xgb":
-        model = xgb_model
-    else:
-        model = rf_model
+    model = xgb_model if model_name == "xgb" else rf_model
 
     prediction = model.predict(processed)[0]
     probability = model.predict_proba(processed)[0][1]

@@ -7,15 +7,14 @@ app = FastAPI(title="Customer Churn Prediction API")
 
 @app.get("/")
 def home():
-    return {
-        "message": "Welcome to Customer Churn Prediction API"
-    }
+    return {"message": "Customer Churn API is running"}
 
 
+@app.post("/predict")
 def predict_customer(customer: CustomerData):
 
     prediction, probability = predict(
-        customer.model_dump(),  # model_dump() Convert Pydantic model to dictionary
+        customer.model_dump(),
         model_name="rf"
     )
 
